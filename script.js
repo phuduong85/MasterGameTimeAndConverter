@@ -169,9 +169,6 @@ function displayGameData() {
         gameElement.querySelector('h3').textContent = game.game;
         gameElement.querySelector('h4').textContent = game.server;
 
-        // Add this new code to set the overlay image
-        // Add this new code to set the overlay image
-        // Add this new code to set the overlay image
         const serverOverlayImg = gameElement.querySelector('.server-overlay-img');
         const serverName = game.server.toLowerCase();
         let overlayImageName;
@@ -183,7 +180,7 @@ function displayGameData() {
         } else if (serverName.includes('asia')) {
             overlayImageName = 'asia.png';
         } else {
-            overlayImageName = 'default.png'; // A default image if the server doesn't match
+            overlayImageName = 'default.png';
         }
 
         serverOverlayImg.src = `/MasterGameTimeAndConverter/gamedata/img/${overlayImageName}`;
