@@ -187,10 +187,6 @@ function displayGameData() {
         }
 
         serverOverlayImg.src = `/MasterGameTimeAndConverter/gamedata/img/${overlayImageName}`;
-        // ... rest of your existing code ...
-        // ... rest of your existing code ...
-        // ... rest of your existing code ...
-
         const localResetTime = convertToLocalTime(game.dailyreset, game.timezone);
         gameElement.querySelector('.local-reset-time').textContent = formatTime(localResetTime);
         gameElement.querySelector('.server-reset-time').textContent = formatServerResetTime(game.dailyreset);
