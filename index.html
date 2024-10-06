@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Zone Converter & Game Reset Times</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Open+Sans&family=Ubuntu&family=IBM+Plex+Sans&family=Be+Vietnam+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="/gamedata/gametimemaster.js"></script>
+</head>
+<body>
+    <div class="major-section-container">
+        <div class="major-section-title">Time Zone Converter</div>
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <div class="time-zone-converter-header mb-0">
+                        <h1 class="text-center">Time Zone Converter</h1>
+                        <div class="header-decoration">
+                            <span class="line"></span>
+                            <span class="icon"><i class="bi bi-globe"></i></span>
+                            <span class="line"></span>
+                        </div>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="darkModeToggle">
+                                <label class="form-check-label" for="darkModeToggle">Dark Mode</label>
+                            </div>
+                            <select id="fontSelector" class="form-select form-select-sm" style="width: auto;">
+                                <option value="Be Vietnam Pro">Be Vietnam Pro</option>
+                                <option value="IBM Plex Sans">IBM Plex Sans</option>
+                                <option value="Nunito">Nunito</option>
+                                <option value="Open Sans">Open Sans</option>
+                                <option value="Ubuntu">Ubuntu</option>
+                            </select>
+                        </div>
+                        <div class="alert alert-info mb-4 text-center" role="alert">
+                            <h5 class="alert-heading mb-1"><i class="bi bi-geo-alt me-2"></i>Your Local Time</h5>
+                            <p class="mb-0 fs-5 fw-bold" id="local-time"></p>
+                        </div>
+                        <form id="converter-form" class="text-center">
+                            <div class="mb-4">
+                                <label class="form-label fw-bold fs-5 mb-3">Select Date and Time</label>
+                                <div class="d-flex justify-content-center flex-wrap gap-2">
+                                    <input type="date" class="form-control" id="date-input">
+                                    <select class="form-select" id="hour-input"></select>
+                                    <select class="form-select" id="minute-input"></select>
+                                    <select class="form-select" id="ampm-input">
+                                        <option value="AM">AM</option>
+                                        <option value="PM">PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-center align-items-end flex-wrap gap-3">
+                                    <div>
+                                        <label for="fromTZ" class="form-label fw-bold">From Time Zone</label>
+                                        <select class="form-select" id="fromTZ"></select>
+                                    </div>
+                                    <button type="button" class="btn btn-outline-primary mx-2 mb-2" id="switchBtn">
+                                        <i class="bi bi-arrow-left-right"></i>
+                                    </button>
+                                    <div>
+                                        <label for="toTZ" class="form-label fw-bold">To Time Zone</label>
+                                        <select class="form-select" id="toTZ"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-4 form-check form-switch d-flex justify-content-center align-items-center">
+                                <input class="form-check-input me-2" type="checkbox" id="timeFormatToggle">
+                                <label class="form-check-label" for="timeFormatToggle">24-hour format</label>
+                            </div>
+                        </form>
+                        
+<div id="result" class="mt-4 p-4 rounded converted-time-section">
+    <h5 class="mb-3 fw-bold text-center">Converted Time</h5>
+    <div class="header-decoration mb-3">
+        <span class="line"></span>
+        <span class="icon"><i class="bi bi-arrow-left-right"></i></span>
+        <span class="line"></span>
+    </div>
+    <div id="converted-time" class="d-flex flex-column align-items-center">
+        <!-- This will be populated by JavaScript -->
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Reset Times Section -->
+    <div class="major-section-container">
+        <div class="major-section-title">Game Reset Times</div>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-12">
+                    <div class="game-reset-times-header">
+                        <h2 class="text-center">Game Reset Times</h2>
+                        <div class="header-decoration">
+                            <span class="line"></span>
+                            <span class="icon"><i class="bi bi-clock"></i></span>
+                            <span class="line"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="game-grid">
+                <!-- Game containers will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Templates -->
+    <template id="game-cont">
+        <div class="col-md-6 mb-4">
+            <div class="game-container">
+                <div class="game-header">
+                    <div class="game-icon">
+                        <img src="" alt="Game Icon">
+                    </div>
+                    <div class="game-title">
+                        <h3 class="game-name"></h3>
+                        <h4 class="game-server"></h4>
+                    </div>
+                </div>
+                <div class="game-times">
+                    <div class="time-item text-center">
+                        <p>Local Reset Time: <span class="local-reset-time"></span></p>
+                    </div>
+                    <div class="time-item text-center">
+                        <p>Server Reset Time: <span class="server-reset-time"></span></p>
+                    </div>
+                    <div class="time-item time-until-reset-container text-center">
+                        <p>Time Until Reset: <span class="time-until-reset"></span></p>
+                    </div>
+                </div>
+                <div class="server-overlay position-absolute top-0 end-0">
+                    <div class="overlay-3d">
+                        <div class="overlay-border">
+                            <img src="" alt="Server Overlay" class="server-overlay-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="custom-game-cont">
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="game-container">
+                <div class="game-header">
+                    <div class="game-icon">
+                        <img src="menu-icons/game.png">
+                    </div>
+                    <h3></h3>
+                    <h4></h4>
+                </div>
+                <div class="game-times">
+                    <div class="local-times">
+                        <p>Local Reset Time: </p><p></p>
+                        <p>Time Until Reset: </p><p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
