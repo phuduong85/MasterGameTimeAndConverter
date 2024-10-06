@@ -165,7 +165,7 @@ function displayGameData() {
 
     gameData.forEach(game => {
         const gameElement = template.content.cloneNode(true);
-        gameElement.querySelector('.game-icon img').src = `/gamedata/img/${game.icon}.png`;
+        gameElement.querySelector('.game-icon img').src = `/MasterGameTimeAndConverter/gamedata/img/${game.icon}.png`;
         gameElement.querySelector('h3').textContent = game.game;
         gameElement.querySelector('h4').textContent = game.server;
 
