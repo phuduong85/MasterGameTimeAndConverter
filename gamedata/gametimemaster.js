@@ -51,7 +51,7 @@ var gameData = [
 	{
 		game: "Path to Nowhere",
 		server: "America",
-		timezone: "UTC-70:00",
+		timezone: "UTC-07:00",
 		dailyreset: "05:00",
 		icon: "PtN"
 	},
