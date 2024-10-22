@@ -32,7 +32,7 @@ var gameData = [
 		server: "Asia",
 		timezone: "UTC-05:00",
 		dailyreset: "15:00",
-		icon: "GenshinImpact"
+		icon: "GenshinImpact_Asia"
 	},
 	{
 		game: "Honkai: Star Rail",
@@ -46,7 +46,14 @@ var gameData = [
 		server: "Asia",
 		timezone: "UTC-05:00",
 		dailyreset: "15:00",
-		icon: "HSR"
+		icon: "HSR_Asia"
+	},
+	{
+		game: "Path to Nowhere",
+		server: "America",
+		timezone: "UTC-70:00",
+		dailyreset: "05:00",
+		icon: "PtN"
 	},
 	{
 		game: "Punishing: Gray Raven",
